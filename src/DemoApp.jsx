@@ -25,10 +25,10 @@ const fri = offsetDay(monday, 4);
 
 // ── Mock crew members ───────────────────────────────────────────────────
 const INITIAL_CREW = [
-  { id: "crew_1", name: "Mike Torres", color: "#F16028", phone: "(410) 555-1001", email: "mike@example.com", avatarUrl: null, sortOrder: 0 },
-  { id: "crew_2", name: "Dave Rivera", color: "#B39977", phone: "(410) 555-1002", email: "dave@example.com", avatarUrl: null, sortOrder: 1 },
-  { id: "crew_3", name: "Carlos Martinez", color: "#8b6b3d", phone: "(410) 555-1003", email: "carlos@example.com", avatarUrl: null, sortOrder: 2 },
-  { id: "crew_4", name: "Sarah Kim", color: "#d4521f", phone: "(410) 555-1004", email: "sarah@example.com", avatarUrl: null, sortOrder: 3 },
+  { id: "crew_1", name: "Mike Torres", color: "#9E7060", phone: "(410) 555-1001", email: "mike@example.com", avatarUrl: null, sortOrder: 0 },
+  { id: "crew_2", name: "Dave Rivera", color: "#A67C5B", phone: "(410) 555-1002", email: "dave@example.com", avatarUrl: null, sortOrder: 1 },
+  { id: "crew_3", name: "Carlos Martinez", color: "#7A6248", phone: "(410) 555-1003", email: "carlos@example.com", avatarUrl: null, sortOrder: 2 },
+  { id: "crew_4", name: "Sarah Kim", color: "#B08B6B", phone: "(410) 555-1004", email: "sarah@example.com", avatarUrl: null, sortOrder: 3 },
 ];
 
 const CREW_BILLING = { total: 4, free: 3, paid: 1, monthlyCost: 10 };
@@ -79,150 +79,9 @@ const SCHEDULE_ENTRIES = [
   { id: "entry_6", oppId: "opp_12", userId: null, startDate: null, status: "on_hold", durationHours: null, splitGroupId: null, splitIndex: null, holdReason: "Waiting for paint delivery — expected Friday" },
 ];
 
-// ── Animated Tutorial Overlay ────────────────────────────────────────────
-const pulseKeyframes = `
-@keyframes pulse-ring {
-  0% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.15); opacity: 0.3; }
-  100% { transform: scale(1); opacity: 0.6; }
-}
-@keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-`;
-
-const TUTORIAL_CARDS = [
-  {
-    icon: "↕",
-    title: "Drag to Schedule",
-    subtitle: "Drag jobs from the queue onto the calendar",
-  },
-  {
-    icon: "⊡",
-    title: "Double-click for Details",
-    subtitle: "Open any job to add notes and manage it",
-  },
-  {
-    icon: "⚙",
-    title: "Manage Your Crew",
-    subtitle: "Add team members and configure settings",
-  },
-];
-
-function AnimatedOverlay({ onInteract }) {
-  return (
-    <div
-      onMouseEnter={onInteract}
-      style={{
-        position: "absolute",
-        inset: 0,
-        zIndex: 30,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "rgba(251,249,246,0.88)",
-        backdropFilter: "blur(2px)",
-        transition: "opacity 0.5s ease",
-        cursor: "pointer",
-      }}
-    >
-      <style>{pulseKeyframes}</style>
-
-      {/* Tutorial cards */}
-      <div style={{
-        display: "flex",
-        gap: 28,
-        marginBottom: 32,
-        flexWrap: "wrap",
-        justifyContent: "center",
-        padding: "0 20px",
-      }}>
-        {TUTORIAL_CARDS.map((card, i) => (
-          <div
-            key={i}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 10,
-              padding: "28px 24px 22px",
-              background: "#FDFCFB",
-              borderRadius: 14,
-              border: "1px solid #EDE6D9",
-              boxShadow: "0 4px 24px rgba(52,37,25,0.08)",
-              minWidth: 190,
-              maxWidth: 220,
-              animation: `fade-in-up 0.6s ease ${i * 0.15}s both`,
-            }}
-          >
-            {/* Pulsing icon ring */}
-            <div style={{ position: "relative", width: 52, height: 52 }}>
-              <div style={{
-                position: "absolute",
-                inset: 0,
-                borderRadius: "50%",
-                border: "2px solid #F16028",
-                animation: "pulse-ring 2s ease-in-out infinite",
-                animationDelay: `${i * 0.3}s`,
-              }} />
-              <div style={{
-                position: "relative",
-                width: 52,
-                height: 52,
-                borderRadius: "50%",
-                background: "#fef0e8",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 22,
-                color: "#F16028",
-              }}>
-                {card.icon}
-              </div>
-            </div>
-
-            <span style={{
-              fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-              fontSize: 15,
-              fontWeight: 700,
-              color: "#1E140C",
-              letterSpacing: "-0.01em",
-            }}>
-              {card.title}
-            </span>
-            <span style={{
-              fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-              fontSize: 12.5,
-              color: "#684F36",
-              textAlign: "center",
-              lineHeight: 1.4,
-            }}>
-              {card.subtitle}
-            </span>
-          </div>
-        ))}
-      </div>
-
-      {/* Bottom hint */}
-      <div style={{
-        fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-        fontSize: 13,
-        color: "#B39977",
-        letterSpacing: "0.02em",
-        animation: "fade-in-up 0.6s ease 0.5s both",
-      }}>
-        Hover anywhere to try it yourself
-      </div>
-    </div>
-  );
-}
-
 // ── Demo App ─────────────────────────────────────────────────────────────
 export default function DemoApp() {
   const [crewMembers, setCrewMembers] = useState(INITIAL_CREW);
-  const [hasInteracted, setHasInteracted] = useState(false);
 
   const handleCrewChange = useCallback(async () => {
     // In the real app this re-fetches from the API.
@@ -238,8 +97,7 @@ export default function DemoApp() {
   }, []);
 
   return (
-    <div style={{ position: "relative" }}>
-      {/* The actual scheduler */}
+    <div>
       <CrewScheduler
         crewMembers={crewMembers}
         crewBilling={CREW_BILLING}
@@ -251,11 +109,6 @@ export default function DemoApp() {
         onRefresh={handleRefresh}
         onCrewChange={handleCrewChange}
       />
-
-      {/* Tutorial overlay — fades on first hover, never returns */}
-      {!hasInteracted && (
-        <AnimatedOverlay onInteract={() => setHasInteracted(true)} />
-      )}
     </div>
   );
 }

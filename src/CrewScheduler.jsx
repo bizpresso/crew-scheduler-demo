@@ -3,7 +3,7 @@ import { assignJob, rescheduleJob, holdJob, unholdJob, completeJob, splitJob, ad
 
 // ── Config ──────────────────────────────────────────────────────────────
 const STD_HOURS = 8;
-const CREW_COLORS = ["#F16028", "#B39977", "#8b6b3d", "#d4521f", "#c68642", "#a0522d", "#e08a50", "#684F36"];
+const CREW_COLORS = ["#9E7060", "#A67C5B", "#7A6248", "#B08B6B", "#8B6B4A", "#C09878", "#6B5840", "#8B7E68"];
 
 // ── SVG Icons ───────────────────────────────────────────────────────────
 const LockIcon = ({ size = 10, color = "currentColor" }) => (
