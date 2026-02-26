@@ -3,7 +3,7 @@ import { assignJob, rescheduleJob, holdJob, unholdJob, completeJob, splitJob, ad
 
 // ── Config ──────────────────────────────────────────────────────────────
 const STD_HOURS = 8;
-const CREW_COLORS = ["#3B82F6", "#10B981", "#F59E0B", "#8B5CF6", "#EF4444", "#06B6D4", "#EC4899", "#F97316"];
+const CREW_COLORS = ["#F16028", "#B39977", "#8b6b3d", "#d4521f", "#c68642", "#a0522d", "#e08a50", "#684F36"];
 
 // ── SVG Icons ───────────────────────────────────────────────────────────
 const LockIcon = ({ size = 10, color = "currentColor" }) => (
@@ -101,11 +101,11 @@ const AlertIcon = ({ size = 16, color = "currentColor" }) => (
 
 // ── Colors ───────────────────────────────────────────────────────────────
 const C = {
-  bg: "#F4F4F6", card: "#FFFFFF", border: "#E5E7EB", borderLight: "#F3F4F6",
-  text: "#111827", sub: "#6B7280", muted: "#9CA3AF",
-  blue: "#3B82F6", blueHover: "#2563EB", blueLight: "#EFF6FF",
-  green: "#10B981", orange: "#F59E0B", orangeLight: "#FFF7ED", orangeBorder: "#FBBF24",
-  completed: "#D1D5DB",
+  bg: "#FBF9F6", card: "#FDFCFB", border: "#B39977", borderLight: "#EDE6D9",
+  text: "#1E140C", sub: "#684F36", muted: "#B39977",
+  blue: "#F16028", blueHover: "#d4521f", blueLight: "#fef0e8",
+  green: "#10B981", orange: "#d4521f", orangeLight: "#fef0e8", orangeBorder: "#F16028",
+  completed: "#B39977",
 };
 
 // ── Helpers ──────────────────────────────────────────────────────────────
@@ -278,13 +278,13 @@ function QueueCard({ opp, onDragStart, onDoubleClick }) {
         <span style={{ fontSize: 12, fontWeight: 600, color: C.text, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", flex: 1, minWidth: 0 }}>{opp.contactName || opp.name}</span>
         <div style={{ display: "flex", gap: 4, alignItems: "center", flexShrink: 0 }}>
           {opp.needsMaterials && (
-            <span title="Needs materials" style={{ display: "inline-flex", alignItems: "center", gap: 2, fontSize: 9, background: "#DBEAFE", color: "#1E40AF", padding: "1px 5px", borderRadius: 4, fontWeight: 600 }}>
+            <span title="Needs materials" style={{ display: "inline-flex", alignItems: "center", gap: 2, fontSize: 9, background: "#fef0e8", color: "#b34a1d", padding: "1px 5px", borderRadius: 4, fontWeight: 600 }}>
               <MaterialIcon size={8} /> MAT
             </span>
           )}
           {isContinuous && (
-            <span title="Continuous — can't split across days" style={{ display: "inline-flex", alignItems: "center", gap: 3, fontSize: 9, background: "#FEF3C7", color: "#92400E", padding: "1px 5px", borderRadius: 4, fontWeight: 600 }}>
-              <LockIcon size={8} color="#92400E" /> CONT
+            <span title="Continuous — can't split across days" style={{ display: "inline-flex", alignItems: "center", gap: 3, fontSize: 9, background: "#fdf2e9", color: "#7a3510", padding: "1px 5px", borderRadius: 4, fontWeight: 600 }}>
+              <LockIcon size={8} color="#7a3510" /> CONT
             </span>
           )}
         </div>
@@ -369,7 +369,7 @@ const activityIcons = {
   held: { icon: "⏸", color: C.orange },
   unheld: { icon: "▶", color: C.green },
   completed: { icon: "✓", color: C.green },
-  split: { icon: "✂", color: "#7C3AED" },
+  split: { icon: "✂", color: "#d4521f" },
 };
 
 const NoteIcon = ({ size = 12, color = "currentColor" }) => (
@@ -476,7 +476,7 @@ function SplitDialog({ opp, entry, onClose, onSplit }) {
           width: "100%", padding: "6px 0", fontSize: 12, color: C.blue, background: C.blueLight,
           border: `1px dashed ${C.blue}`, borderRadius: 6, cursor: "pointer", fontWeight: 500, marginBottom: 12,
         }}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "#DBEAFE")}
+          onMouseEnter={(e) => (e.currentTarget.style.background = "#fef0e8")}
           onMouseLeave={(e) => (e.currentTarget.style.background = C.blueLight)}
         >+ Add Block</button>
 
@@ -496,14 +496,14 @@ function SplitDialog({ opp, entry, onClose, onSplit }) {
           }}>Cancel</button>
           <button onClick={handleSplit} disabled={!isValid || saving} style={{
             flex: 2, padding: "9px 16px",
-            background: isValid && !saving ? "#7C3AED" : C.borderLight,
+            background: isValid && !saving ? "#d4521f" : C.borderLight,
             color: isValid && !saving ? "#fff" : C.muted,
             border: "none", borderRadius: 8, fontSize: 13, fontWeight: 600,
             cursor: isValid && !saving ? "pointer" : "default",
             display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
           }}
-            onMouseEnter={(e) => { if (isValid && !saving) e.currentTarget.style.background = "#6D28D9"; }}
-            onMouseLeave={(e) => { if (isValid && !saving) e.currentTarget.style.background = "#7C3AED"; }}
+            onMouseEnter={(e) => { if (isValid && !saving) e.currentTarget.style.background = "#b34a1d"; }}
+            onMouseLeave={(e) => { if (isValid && !saving) e.currentTarget.style.background = "#d4521f"; }}
           >
             <ScissorsIcon size={12} color={isValid && !saving ? "#fff" : C.muted} />
             {saving ? "Splitting…" : `Split into ${blocks.length} blocks`}
@@ -612,12 +612,12 @@ function DetailPanel({ entry, opp, user, crewMembers, alloc, schedule, onClose, 
           <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 2, flexWrap: "wrap" }}>
             <span style={{ fontSize: 11, fontWeight: 600, color: C.blue, textTransform: "uppercase", letterSpacing: ".03em" }}>{opp.typeOfWork || "Job"}</span>
             {isContinuous && (
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 3, fontSize: 9, background: "#FEF3C7", color: "#92400E", padding: "1px 5px", borderRadius: 4, fontWeight: 600 }}>
-                <LockIcon size={8} color="#92400E" /> CONTINUOUS
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 3, fontSize: 9, background: "#fdf2e9", color: "#7a3510", padding: "1px 5px", borderRadius: 4, fontWeight: 600 }}>
+                <LockIcon size={8} color="#7a3510" /> CONTINUOUS
               </span>
             )}
             {opp.needsMaterials && (
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 2, fontSize: 9, background: "#DBEAFE", color: "#1E40AF", padding: "1px 5px", borderRadius: 4, fontWeight: 600 }}>
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 2, fontSize: 9, background: "#fef0e8", color: "#b34a1d", padding: "1px 5px", borderRadius: 4, fontWeight: 600 }}>
                 <MaterialIcon size={8} /> MATERIALS
               </span>
             )}
@@ -739,13 +739,13 @@ function DetailPanel({ entry, opp, user, crewMembers, alloc, schedule, onClose, 
                     style={{
                       display: "flex", alignItems: "center", justifyContent: "center",
                       width: 26, height: 26, borderRadius: 6,
-                      background: C.card, border: `1px solid #C4B5FD`,
-                      color: "#7C3AED", cursor: "pointer", flexShrink: 0,
+                      background: C.card, border: `1px solid #F16028`,
+                      color: "#d4521f", cursor: "pointer", flexShrink: 0,
                       transition: "all .15s",
                     }}
-                    onMouseEnter={(e) => { e.currentTarget.style.background = "#EDE9FE"; e.currentTarget.style.borderColor = "#7C3AED"; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = C.card; e.currentTarget.style.borderColor = "#C4B5FD"; }}
-                  ><ScissorsIcon size={12} color="#7C3AED" /></span>
+                    onMouseEnter={(e) => { e.currentTarget.style.background = "#fef0e8"; e.currentTarget.style.borderColor = "#d4521f"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = C.card; e.currentTarget.style.borderColor = "#F16028"; }}
+                  ><ScissorsIcon size={12} color="#d4521f" /></span>
                 )}
               </div>
             </div>
@@ -778,14 +778,14 @@ function DetailPanel({ entry, opp, user, crewMembers, alloc, schedule, onClose, 
               )}
             </div>
             <div style={{
-              background: isContinuous ? "#FEF3C7" : C.bg,
+              background: isContinuous ? "#fdf2e9" : C.bg,
               border: `1px solid ${isContinuous ? C.orangeBorder : C.border}`,
               borderRadius: 6, padding: "5px 10px",
             }}>
               <div style={{ fontSize: 10, color: C.muted, marginBottom: 1 }}>Type</div>
-              <div style={{ fontSize: 12, fontWeight: 500, color: isContinuous ? "#92400E" : C.sub, display: "flex", alignItems: "center", gap: 4 }}>
+              <div style={{ fontSize: 12, fontWeight: 500, color: isContinuous ? "#7a3510" : C.sub, display: "flex", alignItems: "center", gap: 4 }}>
                 {isContinuous
-                  ? <><LockIcon size={10} color="#92400E" /> Continuous</>
+                  ? <><LockIcon size={10} color="#7a3510" /> Continuous</>
                   : <><ScissorsIcon size={10} color={C.sub} /> Splittable</>}
               </div>
             </div>
@@ -826,8 +826,8 @@ function DetailPanel({ entry, opp, user, crewMembers, alloc, schedule, onClose, 
                         {note.source && (
                           <span style={{
                             fontSize: 9, fontWeight: 600, padding: "1px 5px", borderRadius: 4,
-                            background: note.source === "opportunity" ? "#DBEAFE" : "transparent",
-                            color: note.source === "opportunity" ? "#1E40AF" : C.muted,
+                            background: note.source === "opportunity" ? "#fef0e8" : "transparent",
+                            color: note.source === "opportunity" ? "#b34a1d" : C.muted,
                           }}>
                             {note.source === "opportunity" ? "Opp" : "Contact"}
                           </span>
@@ -883,7 +883,7 @@ function DetailPanel({ entry, opp, user, crewMembers, alloc, schedule, onClose, 
                     border: "none", cursor: savingNote ? "default" : "pointer",
                     flexShrink: 0,
                   }}
-                  onMouseEnter={(e) => { if (!savingNote) e.currentTarget.style.background = "#2563EB"; }}
+                  onMouseEnter={(e) => { if (!savingNote) e.currentTarget.style.background = "#d4521f"; }}
                   onMouseLeave={(e) => { if (!savingNote) e.currentTarget.style.background = C.blue; }}
                 >
                   {savingNote ? "…" : "Send"}
@@ -955,7 +955,7 @@ function DetailPanel({ entry, opp, user, crewMembers, alloc, schedule, onClose, 
         ) : (
           <div style={{ display: "flex", gap: 8 }}>
             <button onClick={() => setShowHold(true)} style={{ flex: 1, padding: "9px 12px", background: C.bg, color: C.sub, border: `1px solid ${C.border}`, borderRadius: 8, fontSize: 13, fontWeight: 500, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 5 }}
-              onMouseEnter={(e) => { e.currentTarget.style.background = C.orangeLight; e.currentTarget.style.borderColor = C.orangeBorder; e.currentTarget.style.color = "#92400E"; }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = C.orangeLight; e.currentTarget.style.borderColor = C.orangeBorder; e.currentTarget.style.color = "#7a3510"; }}
               onMouseLeave={(e) => { e.currentTarget.style.background = C.bg; e.currentTarget.style.borderColor = C.border; e.currentTarget.style.color = C.sub; }}>
               <PauseIcon size={11} /> {isSplitBlock ? "Hold Remaining" : "Hold"}
             </button>
@@ -1819,7 +1819,7 @@ export default function CrewScheduler({ crewMembers, crewBilling, stages, opport
   }, []);
 
   return (
-    <div style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", background: C.bg, minHeight: "100vh", color: C.text, fontSize: 14, padding: 10 }}>
+    <div style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", background: C.bg, minHeight: "100vh", color: C.text, fontSize: 14, padding: 10 }}>
      <div style={{ background: C.card, borderRadius: 12, border: `1px solid ${C.border}`, overflow: "hidden", height: "calc(100vh - 20px)", display: "flex", flexDirection: "column" }}>
       {/* Top bar */}
       <div style={{ background: C.card, borderBottom: `1px solid ${C.border}`, padding: "10px 20px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -1889,7 +1889,7 @@ export default function CrewScheduler({ crewMembers, crewBilling, stages, opport
                     onMouseLeave={(e) => { e.currentTarget.style.boxShadow = "none"; }}>
                     <div style={{ fontSize: 12, fontWeight: 600, color: C.text, marginBottom: 1 }}>{opp.typeOfWork || opp.name}</div>
                     <div style={{ fontSize: 11, color: C.sub, marginBottom: 2 }}>{opp.contactName || "—"}</div>
-                    {reason && <div style={{ fontSize: 10, color: "#92400E", fontStyle: "italic", marginBottom: 4 }}>{reason}</div>}
+                    {reason && <div style={{ fontSize: 10, color: "#7a3510", fontStyle: "italic", marginBottom: 4 }}>{reason}</div>}
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                       <span style={{ fontSize: 11, fontWeight: 600, color: C.orange }}>{hLabel(opp.estDurationHours)}</span>
                       <button onClick={() => handleRemoveHold(oppId)} style={{ fontSize: 10, color: C.blue, background: "none", border: "none", cursor: "pointer", fontWeight: 500, padding: "2px 4px" }}
@@ -1954,12 +1954,12 @@ export default function CrewScheduler({ crewMembers, crewBilling, stages, opport
                 return (
                   <div key={di}
                     onDragOver={(e) => { e.preventDefault(); e.currentTarget.style.background = C.blueLight; }}
-                    onDragLeave={(e) => { e.currentTarget.style.background = over ? C.orangeLight : isT ? "rgba(59,130,246,.03)" : "transparent"; }}
-                    onDrop={(e) => { e.currentTarget.style.background = over ? C.orangeLight : isT ? "rgba(59,130,246,.03)" : "transparent"; handleDrop(e, member.id, ds); }}
+                    onDragLeave={(e) => { e.currentTarget.style.background = over ? C.orangeLight : isT ? "rgba(241,96,40,.03)" : "transparent"; }}
+                    onDrop={(e) => { e.currentTarget.style.background = over ? C.orangeLight : isT ? "rgba(241,96,40,.03)" : "transparent"; handleDrop(e, member.id, ds); }}
                     style={{
                       flex: 1, minWidth: dayMinW, borderRight: `1px solid ${C.border}`,
                       padding: "3px 3px", minHeight: 100,
-                      background: over ? C.orangeLight : isT ? "rgba(59,130,246,.03)" : "transparent",
+                      background: over ? C.orangeLight : isT ? "rgba(241,96,40,.03)" : "transparent",
                       borderLeft: over ? `2px solid ${C.orangeBorder}` : "none",
                       transition: "background .1s",
                     }}>
@@ -1967,7 +1967,7 @@ export default function CrewScheduler({ crewMembers, crewBilling, stages, opport
                       <DayBlock key={bi} block={block} color={member.color} onDoubleClick={setSelected} onDragStart={setDragging} />
                     ))}
                     {totalH > 0 && (
-                      <div style={{ fontSize: 9, fontWeight: 600, textAlign: "right", padding: "0 2px", color: over ? "#92400E" : C.muted, marginTop: 1 }}>
+                      <div style={{ fontSize: 9, fontWeight: 600, textAlign: "right", padding: "0 2px", color: over ? "#7a3510" : C.muted, marginTop: 1 }}>
                         {totalH}h{over ? ` / ${STD_HOURS}h` : ""}
                       </div>
                     )}
@@ -2076,7 +2076,7 @@ export default function CrewScheduler({ crewMembers, crewBilling, stages, opport
       )}
 
       {toast && (
-        <div style={{ position: "fixed", bottom: 20, left: "50%", transform: "translateX(-50%)", background: "#1E293B", color: "#fff", fontSize: 13, fontWeight: 500, padding: "10px 20px", borderRadius: 8, boxShadow: "0 4px 12px rgba(0,0,0,.15)", zIndex: 100, animation: "su .2s ease" }}>
+        <div style={{ position: "fixed", bottom: 20, left: "50%", transform: "translateX(-50%)", background: "#342519", color: "#fff", fontSize: 13, fontWeight: 500, padding: "10px 20px", borderRadius: 8, boxShadow: "0 4px 12px rgba(0,0,0,.15)", zIndex: 100, animation: "su .2s ease" }}>
           {toast}
         </div>
       )}
