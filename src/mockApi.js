@@ -6,9 +6,9 @@
 // ── Module-level state ──────────────────────────────────────────────────
 let _settings = {
   workingDays: [1, 2, 3, 4, 5],
-  reminderName: "Rick Gramlich",
-  reminderPhone: "(410) 555-0001",
-  reminderEmail: "rick@bizpresso.co",
+  reminderName: "Otto Mation",
+  reminderPhone: "(443) 995-2651",
+  reminderEmail: "info@bizpresso.co",
   reminderMethods: ["sms", "email"],
   reminderTime: "08:00",
   reminderEnabled: true,
