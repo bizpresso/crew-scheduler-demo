@@ -1931,7 +1931,7 @@ export default function CrewScheduler({ crewMembers, crewBilling, stages, opport
             {week.map((d, i) => {
               const t = fmt(d) === today;
               return (
-                <div key={i} style={{ flex: 1, minWidth: dayMinW, padding: "6px 0", borderRight: `1px solid ${C.border}`, textAlign: "center", background: t ? C.blueLight : "transparent" }}>
+                <div key={i} style={{ flex: 1, minWidth: dayMinW, padding: "6px 0", borderRight: i < week.length - 1 ? `1px solid ${C.border}` : "none", textAlign: "center", background: t ? C.blueLight : "transparent" }}>
                   <div style={{ fontSize: 10, fontWeight: 600, color: t ? C.blue : C.muted, textTransform: "uppercase" }}>{d.toLocaleDateString("en-US", { weekday: "short" })}</div>
                   <div style={{ fontSize: 16, fontWeight: t ? 700 : 500, color: t ? C.blue : C.text }}>{d.getDate()}</div>
                 </div>
@@ -1957,7 +1957,7 @@ export default function CrewScheduler({ crewMembers, crewBilling, stages, opport
                     onDragLeave={(e) => { e.currentTarget.style.background = over ? C.orangeLight : isT ? "rgba(241,96,40,.03)" : "transparent"; }}
                     onDrop={(e) => { e.currentTarget.style.background = over ? C.orangeLight : isT ? "rgba(241,96,40,.03)" : "transparent"; handleDrop(e, member.id, ds); }}
                     style={{
-                      flex: 1, minWidth: dayMinW, borderRight: `1px solid ${C.border}`,
+                      flex: 1, minWidth: dayMinW, borderRight: di < week.length - 1 ? `1px solid ${C.border}` : "none",
                       padding: "3px 3px", minHeight: 100,
                       background: over ? C.orangeLight : isT ? "rgba(241,96,40,.03)" : "transparent",
                       borderLeft: over ? `2px solid ${C.orangeBorder}` : "none",
